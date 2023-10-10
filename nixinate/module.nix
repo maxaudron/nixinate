@@ -12,14 +12,14 @@ with lib;
     };
 
     host = mkOption {
-      type = types.string;
+      type = types.str;
       description = ''
         IP Address to connect to machine with.
       '';
     };
 
     sshUser = mkOption {
-      type = types.nullOr types.string;
+      type = types.nullOr types.str;
       default = null;
       description = ''
         Override the user used for ssh and use the one
@@ -56,7 +56,7 @@ with lib;
     };
 
     nixOptions = mkOption {
-      type = types.list types.string;
+      type = types.listOf types.str;
       default = [ ];
       description = ''
         Extra CLI Flags to pass to nixos-rebuild.
