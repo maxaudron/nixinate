@@ -14,6 +14,8 @@
         flake = {
           inherit flakeModules;
           flakeModule = flakeModules.default;
+          nixosModules.default = import ./nixinate/module.nix;
+          nixosModule = nixosModules.default;
         };
         systems = [
           "x86_64-linux"
