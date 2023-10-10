@@ -11,7 +11,7 @@ with lib;
       '';
     };
 
-    endpoint = mkOption {
+    host = mkOption {
       type = types.string;
       description = ''
         IP Address to connect to machine with.
