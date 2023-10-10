@@ -9,9 +9,9 @@ let
   openssh = "${getExe pkgs.openssh}";
   flock = "${getExe pkgs.flock}";
 
-  n = flake.nixosConfigurations.${machine}._module.args.nixinate;
-  hermetic = n.hermetic or true;
-  user = n ? sshUser;
+  n = flake.nixosConfigurations.${machine}.config.deploy;
+  hermetic = n.hermetic;
+  user = sshUser;
   conn = if user then "${n.sshUser}@${n.host}" else "${n.host}";
   where = n.buildOn or "remote";
   remote = if where == "remote" then true else if where == "local" then false else abort "_module.args.nixinate.buildOn is not set to a valid value of 'local' or 'remote'";

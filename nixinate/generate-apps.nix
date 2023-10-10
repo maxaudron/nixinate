@@ -5,7 +5,7 @@ let
   validMachines = nixpkgs.lib.remove ""
     (nixpkgs.lib.forEach machines
       (x: nixpkgs.lib.optionalString
-        (flake.nixosConfigurations."${x}"._module.args ? nixinate) "${x}"));
+        (flake.nixosConfigurations."${x}".config.deploy.enable) "${x}"));
   mkDeployScript = import ./make-deploy-script.nix { inherit nixpkgs pkgs flake; };
 in
 nixpkgs.lib.genAttrs
