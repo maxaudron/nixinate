@@ -11,7 +11,7 @@ let
 in
 {
   flake = {
-    nixosModules.default = with lib; {
+    nixosModules.default = { config, lib, pkgs, ... }: with lib; {
       options.deploy = {
         enable = mkOption {
           type = types.bool;
@@ -47,7 +47,7 @@ in
         };
 
         buildOn = mkOption {
-          type = types.enum ["local" "remote"];
+          type = types.enum [ "local" "remote" ];
           default = "remote";
           description = ''
             Build the config either on your local system or on the
@@ -67,7 +67,7 @@ in
 
         nixOptions = mkOption {
           type = types.list types.string;
-          default = [];
+          default = [ ];
           description = ''
             Extra CLI Flags to pass to nixos-rebuild.
           '';
