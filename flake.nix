@@ -9,12 +9,14 @@
       let
         inherit (flake-parts-lib) importApply;
         flakeModules.default = importApply ./nixinate { inherit withSystem; };
+        nixosModules.default = import ./nixinate/module.nix;
       in
       {
         flake = {
           inherit flakeModules;
           flakeModule = flakeModules.default;
-          nixosModules.default = import ./nixinate/module.nix;
+
+          inherit nixosModules;
           nixosModule = nixosModules.default;
         };
         systems = [
