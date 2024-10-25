@@ -62,5 +62,14 @@ with lib;
         Extra CLI Flags to pass to nixos-rebuild.
       '';
     };
+
+    archiveFlake = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+          Whether the flake and all its inputs should be copied to
+          the remote machine, or just the flake itself.
+      '';
+    };
   };
 }

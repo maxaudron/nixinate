@@ -10,8 +10,7 @@ let
   generateApps = import ./generate-apps.nix inputs.nixpkgs;
 in
 {
-  flake = {
-  };
+  flake = { };
   perSystem = { system, pkgs, ... }: {
     apps = generateApps pkgs self;
   };
