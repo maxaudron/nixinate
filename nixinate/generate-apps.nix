@@ -27,6 +27,6 @@ nixpkgs.lib.genAttrs
       program = "${toString (mkDeployScript {
         machine = nixpkgs.lib.removeSuffix "-dry-run" x;
         dryRun = true;
-      })}/bin/deploy-${x}.sh";
+      })}/bin/deploy-${nixpkgs.lib.removeSuffix "-dry-run" x}.sh";
     }
   )
