@@ -13,10 +13,10 @@ nixpkgs.lib.genAttrs
   (x:
     {
       type = "app";
-      program = "${toString (mkDeployScript {
+      program = toString (mkDeployScript {
         machine = x;
         dryRun = false;
-      })}/bin/deploy-${x}.sh";
+      });
     }
   )
   // nixpkgs.lib.genAttrs
@@ -24,9 +24,9 @@ nixpkgs.lib.genAttrs
   (x:
     {
       type = "app";
-      program = "${toString (mkDeployScript {
+      program = toString (mkDeployScript {
         machine = nixpkgs.lib.removeSuffix "-dry-run" x;
         dryRun = true;
-      })}/bin/deploy-${nixpkgs.lib.removeSuffix "-dry-run" x}.sh";
+      });
     }
   )

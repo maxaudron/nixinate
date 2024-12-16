@@ -42,4 +42,4 @@ let
 
     '');
 in
-pkgs.writeShellScriptBin "deploy-${machine}.sh" script
+pkgs.writeShellScript "deploy-${machine}.sh" script
