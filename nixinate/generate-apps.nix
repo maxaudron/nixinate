@@ -30,3 +30,14 @@ nixpkgs.lib.genAttrs
       });
     }
   )
+  // nixpkgs.lib.genAttrs
+  (map (a: a + "-boot") validMachines)
+  (x:
+    {
+      type = "app";
+      program = toString (mkDeployScript {
+        machine = nixpkgs.lib.removeSuffix "-boot" x;
+        boot = true;
+      });
+    }
+  )

@@ -1,5 +1,5 @@
 { nixpkgs, pkgs, flake, ... }:
-{ machine, dryRun }:
+{ machine, dryRun, boot }:
 let
   inherit (builtins) abort;
   inherit (pkgs.lib) getExe optionalString concatStringsSep;
@@ -16,7 +16,7 @@ let
   where = n.buildOn or "remote";
   remote = if where == "remote" then true else if where == "local" then false else abort "_module.args.nixinate.buildOn is not set to a valid value of 'local' or 'remote'";
   substituteOnTarget = n.substituteOnTarget or false;
-  switch = if dryRun then "dry-activate" else "switch";
+  switch = if dryRun then "dry-activate" else if boot then "boot" else "switch";
   nixOptions = concatStringsSep " " (n.nixOptions or [ ]);
 
   script =
