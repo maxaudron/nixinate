@@ -16,6 +16,7 @@ nixpkgs.lib.genAttrs
       program = toString (mkDeployScript {
         machine = x;
         dryRun = false;
+        boot = false;
       });
     }
   )
@@ -27,6 +28,7 @@ nixpkgs.lib.genAttrs
       program = toString (mkDeployScript {
         machine = nixpkgs.lib.removeSuffix "-dry-run" x;
         dryRun = true;
+        boot = false;
       });
     }
   )
@@ -37,6 +39,7 @@ nixpkgs.lib.genAttrs
       type = "app";
       program = toString (mkDeployScript {
         machine = nixpkgs.lib.removeSuffix "-boot" x;
+        dryRun = false;
         boot = true;
       });
     }
