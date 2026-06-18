@@ -38,7 +38,7 @@ let
     '')
     else ''
       echo "🔨 Building system closure locally, copying it to remote store and activating it:"
-      ( set -x; ${flock} -w 60 /dev/shm/nixinate-${machine} ${nixos-rebuild} ${nixOptions} ${switch} --flake ${flake}#${machine} --target-host ${conn} --use-remote-sudo ${optionalString substituteOnTarget "-s"} )
+      ( set -x; ${flock} -w 60 /dev/shm/nixinate-${machine} ${nixos-rebuild} ${nixOptions} ${switch} --flake ${flake}#${machine} --target-host ${conn} --sudo ${optionalString substituteOnTarget "-s"} )
 
     '');
 in
